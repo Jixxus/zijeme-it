@@ -17,9 +17,11 @@
     "dependencies": {
         "@mantine/core": "^7.1.5",
         "@mantine/hooks": "^7.1.5",
+        "@mantine/notifications": "^7.1.7",
         "@react-three/drei": "^9.88.9",
         "@react-three/fiber": "^8.15.9",
         "@swc/helpers": "~0.5.2",
+        "@tabler/icons-react": "^2.40.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "three": "^0.158.0"

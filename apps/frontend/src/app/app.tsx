@@ -8,9 +8,12 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Logo from "./components/logo/logo";
+import Box from "./components/box/box";
+import { IconCake } from "@tabler/icons-react";
+import { Notifications, notifications } from "@mantine/notifications";
 
 import "@mantine/core/styles.css";
-import Box from "./components/box/box";
+import "@mantine/notifications/styles.css";
 
 export function App() {
     const theme = createTheme({
@@ -33,6 +36,7 @@ export function App() {
 
     return (
         <MantineProvider theme={theme}>
+            <Notifications />
             <AppShell header={{ height: 60 }}>
                 <AppShell.Header>
                     <Group h="100%" px="md" justify="space-between">
@@ -40,7 +44,21 @@ export function App() {
                             imageSrc="https://cdn.sewio.net/wp-content/uploads/2018/05/Sewio_Symbol_2018-02-200x200.png"
                             text="Žijeme IT"
                         ></Logo>
-                        <Button data-cy="click-button">Click!</Button>
+                        <Button
+                            leftSection={<IconCake size={14} />}
+                            variant="default"
+                            onClick={() =>
+                                notifications.show({
+                                    withBorder: true,
+                                    color: "red",
+                                    title: "Do you want cake?",
+                                    message:
+                                        "Cake is a lie. Cake is a lie. Cake is a lie.",
+                                })
+                            }
+                        >
+                            Click for CAKE!
+                        </Button>
                     </Group>
                 </AppShell.Header>
                 <AppShell.Main className="h-[100dvh]">
