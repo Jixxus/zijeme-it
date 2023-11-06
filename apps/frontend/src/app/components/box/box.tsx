@@ -1,18 +1,44 @@
 import { ThreeElements, useFrame } from "@react-three/fiber";
+import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
+import axios from "axios";
 
 export function Box(props: ThreeElements["mesh"]) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const meshRef = useRef<THREE.Mesh>(null!);
     const [hovered, setHover] = useState(false);
-    const [active, setActive] = useState(false);
     useFrame((state, delta) => (meshRef.current.rotation.x += delta));
+
+    const query = useQuery({
+        queryKey: ["api"],
+        refetchInterval: 1000,
+        queryFn: ({ signal }) =>
+            axios.get<{ message: number }>("/api", { signal }),
+    });
+
+    if (query.isLoading) {
+        return (
+            <mesh {...props} ref={meshRef} scale={1}>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshStandardMaterial color={"blue"} />
+            </mesh>
+        );
+    }
+
+    if (query.isError) {
+        return (
+            <mesh {...props} ref={meshRef} scale={1}>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshStandardMaterial color={"red"} />
+            </mesh>
+        );
+    }
+
     return (
         <mesh
             {...props}
             ref={meshRef}
-            scale={active ? 1.5 : 1}
-            onClick={(event) => setActive(!active)}
+            scale={query.data?.data.message || 1}
             onPointerOver={(event) => setHover(true)}
             onPointerOut={(event) => setHover(false)}
         >
