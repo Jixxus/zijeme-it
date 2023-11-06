@@ -1,7 +1,9 @@
 import { ThreeElements, useFrame } from "@react-three/fiber";
+import THREE from "three";
 import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import axios from "axios";
+import { Api } from "@shared/interfaces";
 
 export function Box(props: ThreeElements["mesh"]) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -12,8 +14,7 @@ export function Box(props: ThreeElements["mesh"]) {
     const query = useQuery({
         queryKey: ["api"],
         refetchInterval: 1000,
-        queryFn: ({ signal }) =>
-            axios.get<{ message: number }>("/api", { signal }),
+        queryFn: ({ signal }) => axios.get<Api>("/api", { signal }),
     });
 
     if (query.isLoading) {
