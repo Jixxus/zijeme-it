@@ -18,5 +18,9 @@ Example repository demonstrated at VUT FIT showcasing some technologies used in 
 
 ### Tools / Libraries / Frameworks (2023)
 
+-   [Tabler Icons](https://tabler-icons.io/) - open-source icons library
 -   [NestJS](https://nestjs.com/) - Node.js framework for server-side applications
 -   [TanStack Query](https://tanstack.com/query/latest) - async state management for React
+-   [Docker](https://www.docker.com/) - platform for building, running, and managing containers
+-   [MySQL](https://www.mysql.com/) - well-known relational SQL database
+-   [TypeORM](https://typeorm.io/) - Object–relational mapping library for JS/TS supporting many databases
