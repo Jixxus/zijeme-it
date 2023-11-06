@@ -15,3 +15,8 @@ Example repository demonstrated at VUT FIT showcasing some technologies used in 
 -   [Husky](https://typicode.github.io/husky/) - git hooks library
 -   [Three.js](https://threejs.org/) - JavaScript 3D library
 -   [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) - Three.js React wrapper
+
+### Tools / Libraries / Frameworks (2023)
+
+-   [NestJS](https://nestjs.com/) - Node.js framework for server-side applications
+-   [TanStack Query](https://tanstack.com/query/latest) - async state management for React
