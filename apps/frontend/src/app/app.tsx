@@ -8,7 +8,7 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Logo from "./components/logo/logo";
-import Box from "./components/box/box";
+import BoxesComponent from "./components/boxes/boxes";
 import { IconCake } from "@tabler/icons-react";
 import { Notifications, notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -80,8 +80,7 @@ export function App() {
                                 decay={0}
                                 intensity={Math.PI}
                             />
-                            <Box position={[-1.2, 0, 0]} />
-                            <Box position={[1.2, 0, 0]} />
+                            <BoxesComponent></BoxesComponent>
                             <OrbitControls></OrbitControls>
                         </Canvas>
                     </AppShell.Main>
