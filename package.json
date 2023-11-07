@@ -5,6 +5,8 @@
     "scripts": {
         "prepare": "husky install",
         "lint": "nx run-many -t lint",
+        "test": "nx run-many -t test",
+        "build": "nx run-many -t build",
         "serve": "nx run-many -t serve",
         "e2e": "nx run-many -t e2e"
     },
@@ -28,9 +30,12 @@
         "@tabler/icons-react": "^2.40.0",
         "@tanstack/react-query": "^5.7.2",
         "axios": "^1.6.0",
+        "firebase": "^10.5.2",
         "mysql2": "^3.6.3",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "react-firebase-hooks": "^5.1.1",
+        "react-router-dom": "^6.18.0",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.8.0",
         "three": "^0.158.0",

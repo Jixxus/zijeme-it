@@ -1,25 +1,27 @@
 import { Box } from "@shared/interfaces";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { BoxComponent } from "../box/box";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection } from "@firebase/firestore";
+import { firestore } from "../../../firebase";
 
 /* eslint-disable-next-line */
 export interface BoxesProps {}
 
 export function BoxesComponent(props: BoxesProps) {
-    const query = useQuery({
-        queryKey: ["boxes"],
-        refetchInterval: 1000,
-        queryFn: ({ signal }) => axios.get<Box[]>("/api/boxes", { signal }),
-    });
+    const [value, loading, error] = useCollection<Box>(
+        collection(firestore, "boxes") as any,
+        {
+            snapshotListenOptions: { includeMetadataChanges: true },
+        }
+    );
 
-    if (query.isLoading || query.isError) {
+    if (loading || error) {
         // eslint-disable-next-line react/jsx-no-useless-fragment
         return <></>;
     }
 
-    return query.data?.data.map((box) => (
-        <BoxComponent box={box}></BoxComponent>
+    return value?.docs.map((box) => (
+        <BoxComponent key={box.id} box={box.data()}></BoxComponent>
     ));
 }
 

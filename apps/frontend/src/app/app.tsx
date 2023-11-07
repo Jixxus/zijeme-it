@@ -5,18 +5,37 @@ import {
     MantineProvider,
     createTheme,
 } from "@mantine/core";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import Logo from "./components/logo/logo";
-import BoxesComponent from "./components/boxes/boxes";
 import { IconCake } from "@tabler/icons-react";
 import { Notifications, notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+    Navigate,
+    RouterProvider,
+    createBrowserRouter,
+} from "react-router-dom";
+import Home from "./routes/home/home";
+import Login from "./routes/login/login";
 
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 
 const queryClient = new QueryClient();
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Navigate to={"/home"}></Navigate>,
+    },
+    {
+        path: "/home",
+        element: <Home></Home>,
+    },
+    {
+        path: "/login",
+        element: <Login></Login>,
+    },
+]);
 
 export function App() {
     const theme = createTheme({
@@ -66,23 +85,7 @@ export function App() {
                         </Group>
                     </AppShell.Header>
                     <AppShell.Main className="h-[100dvh]">
-                        <Canvas>
-                            <ambientLight intensity={Math.PI / 2} />
-                            <spotLight
-                                position={[10, 10, 10]}
-                                angle={0.15}
-                                penumbra={1}
-                                decay={0}
-                                intensity={Math.PI}
-                            />
-                            <pointLight
-                                position={[-10, -10, -10]}
-                                decay={0}
-                                intensity={Math.PI}
-                            />
-                            <BoxesComponent></BoxesComponent>
-                            <OrbitControls></OrbitControls>
-                        </Canvas>
+                        <RouterProvider router={router} />
                     </AppShell.Main>
                 </AppShell>
             </MantineProvider>
